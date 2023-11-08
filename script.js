@@ -7,7 +7,7 @@ const elapsed = document.getElementById("elapsed");
 const output = document.getElementById("output");
 
 function readCount(words, word) {
-  let extras = {
+  const extras = {
     wordCount: 0,
     count: 0,
     chars: 0,
@@ -15,16 +15,13 @@ function readCount(words, word) {
 
   if (words) {
     const wordsArray = words.toLowerCase().trim().split(" ");
-    console.log(wordsArray);
     const count = wordsArray.filter(
       (inWord) => inWord === word.toLowerCase()
     ).length;
-    extras = {
-      wordCount: wordsArray.length,
-      count,
-      chars: count * word.length,
-    };
 
+    extras.wordCount = wordsArray.length;
+    extras.count = count;
+    extras.chars = count * word.length;
     return extras;
   }
   return extras;
@@ -69,7 +66,7 @@ form.addEventListener("submit", (event) => {
   scanned.innerText = wordCount;
   matched.innerText = count;
   char.innerText = chars;
-  elapsed.innerText = time;
+  elapsed.innerText = `${time}ms`;
   output.innerText = redacted;
   output.innerText.length > 1 && output.classList.remove("none");
   form.reset();
