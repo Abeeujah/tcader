@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redact</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Redact!</h1>
+        <form id="form">
+          <div class="group-container">
+            <div class="form-group">
+              <textarea
+                class="text-input"
+                name="words"
+                placeholder=" "
+                id="words"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <label for="words">Words</label>
+            </div>
+          </div>
+          <div class="group-container">
+            <div class="form-group">
+              <input
+                class="text-input"
+                type="text"
+                placeholder=" "
+                name="word"
+                id="word"
+              />
+              <label for="word">Word</label>
+            </div>
+          </div>
+          <div class="group-container">
+            <div class="form-group">
+              <input
+                class="text-input"
+                type="text"
+                placeholder=" "
+                name="cipher"
+                id="cipher"
+              />
+              <label for="cipher">Cipher</label>
+            </div>
+          </div>
+          <button type="submit">Redact Now</button>
+        </form>
+        <div id="result" class="result">
+          <div class="stats">
+            <p>Words scanned: <span class="bold" id="scanned"></span></p>
+            <p>Matched words: <span class="bold" id="matched"></span></p>
+            <p>Total characters: <span class="bold" id="char"></span></p>
+            <p>Time elapsed: <span class="bold" id="elapsed"></span></p>
+          </div>
+          <p class="card bold none" id="output"></p>
+        </div>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
