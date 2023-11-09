@@ -14,9 +14,9 @@ function readCount(words, word) {
   };
 
   if (words) {
-    const wordsArray = words.toLowerCase().trim().split(" ");
+    const wordsArray = words.trim().split(" ");
     const count = wordsArray.filter(
-      (inWord) => inWord === word.toLowerCase()
+      (inWord) => inWord === word
     ).length;
 
     extras.wordCount = wordsArray.length;
@@ -31,10 +31,11 @@ function redact(payload) {
   const { words, word, cipher } = payload;
 
   if (words.includes(word)) {
-    const key = word.toLowerCase();
+    // TODO
+    const key = word;
     const code = cipher.length > 1 ? cipher : cipher.repeat(key.length);
 
-    const redactedWords = words.trim().toLowerCase().replaceAll(key, code);
+    const redactedWords = words.trim().replaceAll(key, code);
 
     return redactedWords;
   }
@@ -60,7 +61,12 @@ function main(payload) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
-  const payload = Object.fromEntries(formData);
+  const request = Object.fromEntries(formData);
+  const payload = {
+    ...request,
+    word: request.word.toLowerCase(),
+    words: request.words.toLowerCase(),
+  };
   const response = main(payload);
   const { wordCount, count, chars, redacted, time } = response;
   scanned.innerText = wordCount;
